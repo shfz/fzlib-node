@@ -1,0 +1,51 @@
+{
+  "name": "fzlib-node",
+  "version": "0.0.1",
+  "private": true,
+  "description": "nodejs fuzzing lib",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist ; tsc",
+    "lint": "eslint --ext \".ts\" --ignore-path .gitignore .",
+    "test": "yarn build ; tsc examples/index.ts ; node examples/index.js",
+    "jq": "yarn build ; tsc examples/index.ts ; node examples/index.js | jq"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hi120ki/nfl.git"
+  },
+  "author": "hi120ki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hi120ki/nfl/issues"
+  },
+  "homepage": "https://github.com/hi120ki/nfl#readme",
+  "lint-staged": {
+    "*.{ts}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "axios-cookiejar-support": "^1.0.1",
+    "tough-cookie": "^4.0.0",
+    "cheerio": "^1.0.0-rc.10"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.4",
+    "@types/tough-cookie": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.3.1",
+    "typescript": "^4.3.4"
+  }
+}
