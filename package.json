@@ -3,11 +3,16 @@
   "version": "0.0.1",
   "description": "shfz/fzlib-node",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist ; tsc",
     "lint": "eslint --ext \".ts\" --ignore-path .gitignore .",
     "test": "yarn build ; tsc examples/index.ts ; node examples/index.js",
-    "jq": "yarn build ; tsc examples/index.ts ; node examples/index.js | jq"
+    "jq": "yarn build ; tsc examples/index.ts ; node examples/index.js | jq",
+    "prepare": "rm -rf dist ; tsc"
   },
   "repository": {
     "type": "git",
