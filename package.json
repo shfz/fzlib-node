@@ -1,8 +1,7 @@
 {
   "name": "fzlib-node",
   "version": "0.0.1",
-  "private": true,
-  "description": "nodejs fuzzing lib",
+  "description": "shfz/fzlib-node",
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist ; tsc",
@@ -12,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hi120ki/nfl.git"
+    "url": "https://github.com/shfz/fzlib-node.git"
   },
   "author": "hi120ki",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hi120ki/nfl/issues"
+    "url": "https://github.com/shfz/fzlib-node/issues"
   },
-  "homepage": "https://github.com/hi120ki/nfl#readme",
+  "homepage": "https://github.com/shfz/fzlib-node#readme",
   "lint-staged": {
     "*.{ts}": "eslint"
   },
