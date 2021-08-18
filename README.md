@@ -197,20 +197,60 @@ await fl.http.head("/path");
 Generate a fuzz consisting of the characters of the first argument
 
 ```ts
-f.gen("abcd")
+fl.fuzz.gen("abcd")
 > caaddaddcadaacdcdddcddab
 ```
 
 ```ts
-f.gen("abcd", 6)
-> caadda
+fl.fuzz.gen("abcd", 6)
+> abadca
 ```
 
-> ```ts
-> gen(words: string, len?: number | undefined)
-> ```
+> `gen(words: string, len?: number | undefined)`
 
-### `char`
+#### genChar
+
+Generate fuzz from Unicode BMP (Basic Multilingual Plane)
+
+```ts
+fl.fuzz.genChar()
+> 喜Ӆ7
+```
+
+> `genChar(len?: number | undefined)`
+
+#### genCharAll
+
+Generate fuzz from Unicode BMP, SMP, SIP, TIP
+
+```ts
+fl.fuzz.genCharAll()
+> 벼ጇ
+```
+
+> `genCharAll(len?: number | undefined)`
+
+#### genAscii
+
+`genAscii` is equivalent to `fl.fuzz.gen(char.ascii())`
+
+```ts
+fl.fuzz.genAscii()
+> 5hOu~:8!
+```
+
+> `genAscii(len?: number | undefined)`
+
+#### genNumber
+
+```ts
+fl.fuzz.genNumber()
+> 87684847694786
+```
+
+> `genNumber(len?: number | undefined)`
+
+### Character sets `char`
 
 Generate a basic set of characters for `fl.fuzz.gen`.
 
