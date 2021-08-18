@@ -1,9 +1,5 @@
 # fzlib-node
 
-## Requirements
-
-- Node.js >= v14
-
 ## Install
 
 <https://www.npmjs.com/package/fzlib-node>
@@ -12,13 +8,15 @@
 npm install fzlib-node
 ```
 
-## Usage
+## Setup
 
 ### JavaScript
 
 ...
 
 ### TypeScript
+
+[shfz/demo-typescript](https://github.com/shfz/demo-typescript)
 
 Setup npm project
 
@@ -93,5 +91,153 @@ $ node index.js
 Run with CLI
 
 ```
-$ fzcli run -t scenario.js -o /tmp/fzlog -p 10 -n 100
+$ fzcli run -t index.js -o /tmp/fzlog -p 10 -n 100
+```
+
+## Usage
+
+### Initialize
+
+```ts
+import { Fuzzlib, char } from "fzlib-node";
+```
+
+`Fuzzlib` contains http request function and fuzz generate function. `char` contains some typical character sets.
+
+```ts
+const fl = new Fuzzlib("http://localhost");
+```
+
+Create an instance of `Fuzzlib`. The argument is baseURL of the web application to be fuzzng.
+
+The session information for a series of http requests is stored in the AxiosInstance. (The cookie is held by [axios-cookiejar-support](https://www.npmjs.com/package/axios-cookiejar-support))
+
+### http request `fl.http`
+
+This library is an extension of axios, and in many cases allows you to add the same options as in axios. Please refer TypeScript type information for details.
+
+Note : In this script, async/await is used. These http requests need to be wrapped with async.
+
+#### GET
+
+```ts
+await fl.http.get("/path");
+```
+
+> `get(url: string, config?: AxiosRequestConfig)`
+
+#### POST
+
+```ts
+await fl.http.post("/path", {
+  param: fl.fuzz.genAscii(),
+});
+```
+
+> `post(url: string, data?: any, config?: AxiosRequestConfig)`
+
+#### POST(form)
+
+```ts
+await fl.http.postForm("/path", {
+  param: fl.fuzz.genAscii(),
+});
+```
+
+> `postForm(url: string, data?: any, config?: AxiosRequestConfig)`
+
+#### PUT
+
+```ts
+await fl.http.put("/path", {
+  param: fl.fuzz.genAscii(),
+});
+```
+
+> `put(url: string, data?: any, config?: AxiosRequestConfig)`
+
+#### PATCH
+
+```ts
+await fl.http.patch("/path", {
+  param: fl.fuzz.genAscii(),
+});
+```
+
+> `patch(url: string, data?: any, config?: AxiosRequestConfig)`
+
+#### OPTIONS
+
+```ts
+await fl.http.options("/path");
+```
+
+> `options(url: string, config?: AxiosRequestConfig)`
+
+#### DELETE
+
+```ts
+await fl.http.delete("/path");
+```
+
+> `delete(url: string, config?: AxiosRequestConfig)`
+
+#### HEAD
+
+```ts
+await fl.http.head("/path");
+```
+
+> `head(url: string, config?: AxiosRequestConfig)`
+
+### fuzz generate `fl.fuzz`
+
+#### gen
+
+Generate a fuzz consisting of the characters of the first argument
+
+```ts
+f.gen("abcd")
+> caaddaddcadaacdcdddcddab
+```
+
+```ts
+f.gen("abcd", 6)
+> caadda
+```
+
+> ```ts
+> gen(words: string, len?: number | undefined)
+> ```
+
+### `char`
+
+Generate a basic set of characters for `fl.fuzz.gen`.
+
+#### ascii()
+
+ascii string
+
+```
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+```
+
+#### symbol()
+
+only symbols in ascii strings
+
+```
+!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+```
+
+#### lowercase()
+
+```
+abcdefghijklmnopqrstuvwxyz
+```
+
+#### uppercase()
+
+```
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ```
