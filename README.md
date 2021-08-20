@@ -47,7 +47,7 @@ $ touch tsconfig.json
 }
 ```
 
-Edit fuzzing scenario
+Edit fuzzing scenario script. (For this scenario, fuzz [shfz/demo-webapp](https://github.com/shfz/demo-webapp) running in your local environment.)
 
 ```
 $ touch index.ts
@@ -79,10 +79,10 @@ const fl = new Fuzzlib("http://localhost");
 })();
 ```
 
-Run [shfz/demo-webapp](https://github.com/shfz/demo-webapp) locally and test scenario script without cli (fuzz is automatically generated)
+Run [shfz/demo-webapp](https://github.com/shfz/demo-webapp) and test scenario script without cli (fuzz is automatically generated)
 
 ```
-$ tsc index.ts
+$ ./node_modules/.bin/tsc index.ts
 $ node index.js
 [+] Failed to get command line argument. This is temporary execution. seed : 77195606971
 {"code":0,"message":"No problem","seed":77195606971}
@@ -91,6 +91,7 @@ $ node index.js
 Run with CLI
 
 ```
+$ mkdir /tmp/fzlog
 $ fzcli run -t index.js -o /tmp/fzlog -p 10 -n 100
 ```
 
