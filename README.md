@@ -10,6 +10,8 @@ npm install fzlib-node
 
 ## Setup
 
+Installation of `Node.js`, `npm` and [shfz/fzcli](https://github.com/shfz/fzcli) is required.
+
 ### JavaScript
 
 ...
@@ -21,6 +23,8 @@ npm install fzlib-node
 Setup npm project
 
 ```
+$ mkdir fuzz-project
+$ cd fuzz-project
 $ npm init
 $ npm install typescript @types/node fzlib-node
 ```
